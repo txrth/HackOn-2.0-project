@@ -11,7 +11,7 @@ Y = 700
 
 background = (0, 153, 143)
 display_surface = pygame.display.set_mode((X, Y))
-pygame.display.set_caption('Taskily')
+pygame.display.set_caption('SmartWorks')
 
 app_name_font = pygame.font.Font("FrontEnd/Display/junegull.ttf", 100)
 app_name1 = app_name_font.render('SMART', True, (255, 255, 255))
