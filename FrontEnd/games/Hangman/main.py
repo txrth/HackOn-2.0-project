@@ -144,5 +144,3 @@ word_label.place(relx=0,rely=0.8,relwidth=1,relheight=0.2)
 
 def run_game():
     root.mainloop()
-
-run_game()
