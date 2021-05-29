@@ -38,6 +38,7 @@ class ToDoList:
 
         def adding():
             list.delete(0, END)
+            popUp()
             if Allinputed():
                 print(name.get(), Author.get(), Year.get(), ISBN.get())
                 db.addRec(name.get(), Author.get(), Year.get(), ISBN.get())
@@ -65,6 +66,7 @@ class ToDoList:
 
         def veiwAll():
             list.delete(0, END)
+            db.test()
             db.printTable()
             #table = db.getTasks()
             #for data in table:
@@ -108,76 +110,3 @@ class ToDoList:
         list.bind('<<ListboxSelect>>', getSelectedRow)
 
         window.mainloop()
-
-
-"""
-        lbl = Label(window, text="Task Name", font=textFont)
-        lbl.place(x=75, y=75)
-
-        name = StringVar()
-        NameBox = Entry(window, textvariable=name)
-        NameBox.place(x=250, y=75)
-
-        lbl = Label(window, text="Category", font=textFont)
-        lbl.place(x=75, y=125)
-
-        Author = StringVar()
-        AuthorBox = Entry(window, textvariable=Author)
-        AuthorBox.place(x=250, y=125)
-
-        lbl = Label(window, text="Start Task", font=textFont)
-        lbl.place(x=150, y=175)
-
-        boxFont = ('Ink Free', 10, "bold")
-
-        lbl = Label(window, text="Start Year", font=boxFont)
-        lbl.place(x=50, y=240)
-        Year = IntVar()
-        YearBox = Entry(window, textvariable=Year)
-        YearBox.place(x=50, y=225)
-
-        lbl = Label(window, text="Start Month", font=boxFont)
-        lbl.place(x=250, y=240)
-        Month = IntVar()
-        MonthBox = Entry(window, textvariable=Month)
-        MonthBox.place(x=250, y=225)
-
-        lbl = Label(window, text="Start Hours", font=boxFont)
-        lbl.place(x=50, y=290)
-        Hours = IntVar()
-        HoursBox = Entry(window, textvariable=Hours)
-        HoursBox.place(x=50, y=275)
-
-        lbl = Label(window, text="Start Mins", font=boxFont)
-        lbl.place(x=250, y=290)
-        Mins = IntVar()
-        MinsBox = Entry(window, textvariable=Mins)
-        MinsBox.place(x=250, y=275)
-
-        lbl = Label(window, text="End Task", font=textFont)
-        lbl.place(x=160, y=325)
-
-        lbl = Label(window, text="End Year", font=boxFont)
-        lbl.place(x=50, y=390)
-        StartYear = IntVar()
-        StartYearBox = Entry(window, textvariable=StartYear)
-        StartYearBox.place(x=50, y=375)
-
-        lbl = Label(window, text="End Month", font=boxFont)
-        lbl.place(x=250, y=390)
-        StartMonth = IntVar()
-        StartMonthBox = Entry(window, textvariable=StartMonth)
-        StartMonthBox.place(x=250, y=375)
-
-        lbl = Label(window, text="End Hour", font=boxFont)
-        lbl.place(x=50, y=440)
-        StartHour = IntVar()
-        StartHourBox = Entry(window, textvariable=StartHour)
-        StartHourBox.place(x=50, y=425)
-
-        lbl = Label(window, text="End Mins", font=boxFont)
-        lbl.place(x=250, y=440)
-        StartMins = IntVar()
-        StartMinsBox = Entry(window, textvariable=StartMins)
-        StartMinsBox.place(x=250, y=425)
-"""
