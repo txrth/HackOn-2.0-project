@@ -50,7 +50,7 @@ while True:
             # if the mouse is clicked on the
             if X / 2 - 180 <= mouse[0] <= X / 2 + 180 and Y / 2 <= mouse[1] < Y / 2 + 60:
                 print ("list")
-                #todolist.ToDoList()
+                todolist.ToDoList()
             elif X / 2 - 180 <= mouse[0] <= X / 2 + 180 and Y / 2 + 60 <= mouse[1] < Y / 2 + 150:
                 print ("work")
                 work.Work()

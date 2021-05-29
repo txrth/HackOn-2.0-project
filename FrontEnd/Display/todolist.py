@@ -22,8 +22,8 @@ class ToDoList:
         app_name_rect1 = app_name1.get_rect()
         app_name_rect1.center = (X // 2, Y // 7)
 
-        exit_button = pygame.image.load("exit.png").convert()
-        settings_button = pygame.image.load("settings.png").convert()
+        exit_button = pygame.image.load("FrontEnd/Display/exit.png").convert()
+        settings_button = pygame.image.load("FrontEnd/Display/settings.png").convert()
 
         def Allinputed():
             if name.get() != "" and Author.get() != "" and Year.get() != 0 and ISBN.get() != 0:
