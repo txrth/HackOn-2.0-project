@@ -1,9 +1,9 @@
 import pygame
 from tkinter import *
 from tkinter import messagebox
-import credits
+import FrontEnd.Display.credits as credits
 
-import databases as db
+#import databases as db
 
 class ToDoList:
     def __init__(self):
@@ -17,7 +17,7 @@ class ToDoList:
         display_surface = pygame.display.set_mode((X, Y))
         pygame.display.set_caption('To Do List')
 
-        app_name_font = pygame.font.Font('junegull.ttf', 75)
+        app_name_font = pygame.font.Font("FrontEnd/Display/junegull.ttf", 75) #'FrontEnd.Disjunegull.ttf'
         app_name1 = app_name_font.render('To Do', True, (0, 0, 0))
         app_name_rect1 = app_name1.get_rect()
         app_name_rect1.center = (X // 2, Y // 7)
@@ -53,36 +53,36 @@ class ToDoList:
             list.delete(0, END)
             if Allinputed():
                 print(name.get(), Author.get(), Year.get(), ISBN.get())
-                db.addRec(name.get(), Author.get(), Year.get(), ISBN.get())
+                #db.addRec(name.get(), Author.get(), Year.get(), ISBN.get())
                 list.insert(END, (name.get(), Author.get(), Year.get(), ISBN.get()))
                 messagebox.showinfo("add", "Record added")
                 Reset()
 
         def update():
-            db.Update(selectedValue[0], name.get(), Author.get(), Year.get(), ISBN.get())
+           # db.Update(selectedValue[0], name.get(), Author.get(), Year.get(), ISBN.get())
             list.delete(0, END)
             list.insert(END, (name.get(), Author.get(), Year.get(), ISBN.get()))
             messagebox.showinfo("Update", "Record Updated")
 
         def delete():
             # print(selectedValue[0],"\t",type(selectedValue[0]))
-            db.Delete(selectedValue[0])
+            #db.Delete(selectedValue[0])
             veiwAll()
             Reset()
             messagebox.showinfo("Delete", "One Record Deleted")
 
         def search():
             list.delete(0, END)
-            for data in db.SearchRecord(name.get(), Author.get(), Year.get(), ISBN.get()):
-                list.insert(END, data)
+            #for data in db.SearchRecord(name.get(), Author.get(), Year.get(), ISBN.get()):
+             #   list.insert(END, data)
 
         def veiwAll():
             list.delete(0, END)
-            table, index = db.veiwAll()
-            for data in table:
-                list.insert(END, data)
-            Reset()
-            Indexes.set(str("Number of books:" + str(index)))
+            #table, index = db.veiwAll()
+            #for data in table:
+            #   list.insert(END, data)
+            #Reset()
+            #Indexes.set(str("Number of books:" + str(index)))
 
         title = Label(window, text="My Book Store", font=("arial black", 28, "bold", "underline"), fg="green")
         title.place(x=80, y=10)

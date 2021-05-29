@@ -12,12 +12,12 @@ class Credits:
         display_surface = pygame.display.set_mode((X, Y))
         pygame.display.set_caption('Front-End')
 
-        game_font = pygame.font.Font('junegull.ttf', 100)
+        game_font = pygame.font.Font('FrontEnd/Display/junegull.ttf', 100)
         game1_text = game_font.render('CREDITS', True, (255, 255, 255))
         game1_rect = game1_text.get_rect()
         game1_rect.center = (X//2, Y//5)
 
-        game_font = pygame.font.Font('junegull.ttf', 25)
+        game_font = pygame.font.Font('FrontEnd/Display/junegull.ttf', 25)
         first1_text = game_font.render('ARJUN', True, (255, 255, 255))
         first1_rect = first1_text.get_rect()
         first1_rect.center = (125, 300)
@@ -25,7 +25,7 @@ class Credits:
         last1_rect = last1_text.get_rect()
         last1_rect.center = (125, 350)
 
-        game_font = pygame.font.Font('junegull.ttf', 25)
+        game_font = pygame.font.Font('FrontEnd/Display/junegull.ttf', 25)
         first2_text = game_font.render('DHRUV', True, (255, 255, 255))
         first2_rect = first2_text.get_rect()
         first2_rect.center = (325, 300)
@@ -33,7 +33,7 @@ class Credits:
         last2_rect = last2_text.get_rect()
         last2_rect.center = (325, 350)
 
-        game_font = pygame.font.Font('junegull.ttf', 25)
+        game_font = pygame.font.Font('FrontEnd/Display/junegull.ttf', 25)
         first3_text = game_font.render('KHUSHI', True, (255, 255, 255))
         first3_rect = first3_text.get_rect()
         first3_rect.center = (125, 500)
@@ -41,7 +41,7 @@ class Credits:
         last3_rect = last3_text.get_rect()
         last3_rect.center = (125, 550)
 
-        game_font = pygame.font.Font('junegull.ttf', 25)
+        game_font = pygame.font.Font('FrontEnd/Display/junegull.ttf', 25)
         first4_text = game_font.render('TIRTH', True, (255, 255, 255))
         first4_rect = first4_text.get_rect()
         first4_rect.center = (325, 500)
@@ -49,8 +49,8 @@ class Credits:
         last4_rect = last4_text.get_rect()
         last4_rect.center = (325, 550)
 
-        exit_button = pygame.image.load("exit.png").convert()
-        settings_button = pygame.image.load("settings.png").convert()
+        exit_button = pygame.image.load("FrontEnd/Display/exit.png").convert()
+        settings_button = pygame.image.load("FrontEnd/Display/settings.png").convert()
 
         # infinite loop
         while True:

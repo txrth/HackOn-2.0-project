@@ -1,5 +1,5 @@
 import pygame
-import credits
+import FrontEnd.Display.credits as credits
 
 class Reward:
     def __init__(self):
@@ -13,7 +13,7 @@ class Reward:
         display_surface = pygame.display.set_mode((X, Y))
         pygame.display.set_caption('Front-End')
 
-        game_font = pygame.font.Font('junegull.ttf', 25)
+        game_font = pygame.font.Font('FrontEnd/Display/junegull.ttf', 25)
         game1_text = game_font.render('HANGMAN', True, (255, 255, 255))
         game1_rect = game1_text.get_rect()
         game1_rect.center = (125, 125)
@@ -26,8 +26,8 @@ class Reward:
         game3_rect = game3_text.get_rect()
         game3_rect.center = (125, 325)
 
-        exit_button = pygame.image.load("exit.png").convert()
-        settings_button = pygame.image.load("settings.png").convert()
+        exit_button = pygame.image.load("FrontEnd/Display/exit.png").convert()
+        settings_button = pygame.image.load("FrontEnd/Display/settings.png").convert()
 
         # infinite loop
         while True:

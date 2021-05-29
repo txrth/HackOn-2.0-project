@@ -1,6 +1,6 @@
 import pygame
-import reward
-import credits
+import FrontEnd.Display.reward as reward
+import FrontEnd.Display.credits as credits
 
 class Points:
     def __init__(self):
@@ -14,23 +14,23 @@ class Points:
         display_surface = pygame.display.set_mode((X, Y))
         pygame.display.set_caption('Front-End')
 
-        point_font = pygame.font.Font('junegull.ttf', 75)
+        point_font = pygame.font.Font('FrontEnd/Display/junegull.ttf', 75)
         point_text = point_font.render('Points', True, (255, 255, 255))
         point_rect = point_text.get_rect()
         point_rect.center = (X // 2, Y // 5)
 
-        point_count_font = pygame.font.Font('junegull.ttf', 110)
+        point_count_font = pygame.font.Font('FrontEnd/Display/junegull.ttf', 110)
         point_count_text = point_count_font.render('000000', True, (255, 255, 255))
         point_count_rect = point_count_text.get_rect()
         point_count_rect.center = (X // 2, Y // 5 + 200)
 
-        app_name_font = pygame.font.Font('junegull.ttf', 50)
+        app_name_font = pygame.font.Font('FrontEnd/Display/junegull.ttf', 50)
         app_name1 = app_name_font.render('Rewards', True, (255, 255, 255))
         app_name_rect1 = app_name1.get_rect()
         app_name_rect1.center = (X // 2, Y - 200)
 
-        exit_button = pygame.image.load("exit.png").convert()
-        settings_button = pygame.image.load("settings.png").convert()
+        exit_button = pygame.image.load("FrontEnd/Display/exit.png").convert()
+        settings_button = pygame.image.load("FrontEnd/Display/settings.png").convert()
 
         # infinite loop
         while True:
