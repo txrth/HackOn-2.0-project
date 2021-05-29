@@ -3,7 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 
 
-# import databases as db
+import BackEnd.ToDoDatabase_I_O as db
 
 class ToDoList:
     def __init__(self):
@@ -65,34 +65,36 @@ class ToDoList:
 
         def veiwAll():
             list.delete(0, END)
-            table, index = db.veiwAll()
-            for data in table:
-                list.insert(END, data)
-            Reset()
-            Indexes.set(str("Number of tasks:" + str(index)))
+            db.printTable()
+            #table = db.getTasks()
+            #for data in table:
+             #   list.insert(END, data)
+            #Reset()
 
-        title = Label(window, text="Tasks to Complete", font=('Ink Free', 40, "bold", "underline"), fg="black")
+        #(0,153,143)
+        window['background']='#00998f'
+        title = Label(window, text="Tasks to Complete", font=('Ink Free', 40, "bold", "underline"), fg="white",bg='#00998f')
         title.place(x=0, y=10)
 
         textFont = ('Ink Free', 16, "bold")
-        buttonFont = ('Ink Free', 12, "bold")
+        buttonFont = ('Ink Free', 16, "bold")
 
-        AddBtn = Button(window, text="Add", font=buttonFont, command=adding)
-        AddBtn.place(y=650, x=25)
+        AddBtn = Button(window, text="Add", font=buttonFont, command=adding, fg="white",bg='#00998f')
+        AddBtn.place(y=550, x=17)
 
-        UpDateBtn = Button(window, text="Update", font=buttonFont, command=update)
-        UpDateBtn.place(y=650, x=85)
+        UpDateBtn = Button(window, text="Update", font=buttonFont, command=update, fg="white",bg='#00998f')
+        UpDateBtn.place(y=550, x=75)
 
-        DelBtn = Button(window, text="Delete", font=buttonFont, command=delete)
-        DelBtn.place(y=650, x=175)
+        DelBtn = Button(window, text="Delete", font=buttonFont, command=delete, fg="white",bg='#00998f')
+        DelBtn.place(y=550, x=169)
 
-        SearBtn = Button(window, text="Search", font=buttonFont, command=search)
-        SearBtn.place(y=650, x=255)
+        SearBtn = Button(window, text="Search", font=buttonFont, command=search, fg="white",bg='#00998f')
+        SearBtn.place(y=550, x=255)
 
-        ViewBtn = Button(window, text="View All", font=buttonFont, command=veiwAll)
-        ViewBtn.place(y=650, x=345)
+        ViewBtn = Button(window, text="View All", font=buttonFont, command=veiwAll, fg="white",bg='#00998f')
+        ViewBtn.place(y=550, x=345)
 
-        list = Listbox(window, width=60)
+        list = Listbox(window, width=60,height=25)
         list.place(x=40, y=100)
 
         sb1 = Scrollbar(window)

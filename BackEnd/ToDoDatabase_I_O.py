@@ -9,14 +9,15 @@ def getConnection():
     cur = conn.cursor()
 
 
-def addTask(self, name, category, predictedHours, deadline, partnum=1, Tpart=1, start=None, end=None, done=0):
-    self.getConnection()
+def addTask(name, category, predictedHours, deadline, partnum=1, Tpart=1, start=None, end=None, done=0):
+    getConnection()
     cur.execute("insert into tasks values(null, ?,?,?, ?,?,?, ?,?,?)", (name, category, predictedHours, deadline, start,
                                                                         end, partnum, Tpart, done))
     taskId = cur.lastrowid
     conn.commit()
     cur.execute("insert into log values(null, ?, ?, ?)", (str("Event " + name + " part: " + str(partnum) + " of " +
-            str(Tpart) + " has been added to task"), datetime.datetime.now(), taskId))
+                                                              str(Tpart) + " has been added to task"),
+                                                          datetime.datetime.now(), taskId))
     conn.commit()
     conn.close()
 
@@ -37,8 +38,8 @@ def removeTask(id):
 
 
 # create function to remove setup queSystems for Tasks and logs
-def getA_Task(self, id):
-    self.getConnection()
+def getA_Task(id):
+    getConnection()
     cur.execute("select * from tasks where id =?", (id,))
     raw = cur.fetchall()
     data = []
@@ -49,9 +50,9 @@ def getA_Task(self, id):
     return data
 
 
-def updateTask(self, id, name="", category="", predictedHours=0, deadline="", partnum=1, Tpart=1, start=None, end=None,
+def updateTask(id, name="", category="", predictedHours=0, deadline="", partnum=1, Tpart=1, start=None, end=None,
                done=0):
-    data = self.getA_Task(id)
+    data = getA_Task(id)
     print(data)
     if (name != ""):
         data[1] = name
@@ -72,7 +73,7 @@ def updateTask(self, id, name="", category="", predictedHours=0, deadline="", pa
     if (done != 0):
         data[9] = done
 
-    self.getConnection()
+    getConnection()
     cur.execute("update tasks set name=?, category=?, predictedHours=?, deadline=?, partnum=?, Tparts=?,start=?"
                 ", end=?,done=?  where id=?",
                 (name, category, predictedHours, deadline, partnum, Tpart, start, end, done, id))
@@ -82,8 +83,8 @@ def updateTask(self, id, name="", category="", predictedHours=0, deadline="", pa
     conn.close()
 
 
-def searchRecord(self, name="", category="", partnum="", Tpart="", done=""):
-    self.getConnection()
+def searchRecord(name="", category="", partnum="", Tpart="", done=""):
+    getConnection()
     cur.execute("select * from tasks where name =? or category=? or partnum=? or Tparts=? or done=?",
                 (name, category, partnum, Tpart, done))
     data = cur.fetchall()
@@ -95,33 +96,34 @@ def searchRecord(self, name="", category="", partnum="", Tpart="", done=""):
 
 # "log","actionDone text, time timestamp,task_id Interger"
 
-def test(self):
-    self.getConnection()
+def test():
+    getConnection()
     try:
-        cur.execute('drop table tasks')
-        cur.execute('drop table log')
-        cur.execute('drop table points')
+        pass
+      #  cur.execute('drop table tasks')
+       # cur.execute('drop table log')
+       # cur.execute('drop table points')
     except:
         pass
     else:
         pass
     finally:
-        self.createTable("tasks", " name text NOT NULL, category text NOT NULL, predictedHours Interger, "
-                   "deadline timestamp, start timestamp, end timestamp,partNum Integer, Tparts Interger, done Interger")
-        self.createTable("log",
-                         "actionDone text, time timestamp,task_id Interger, Foreign Key(task_id) references tasks (id)")
-        self.createTable("points","Point Integer")
+        createTable("tasks", " name text NOT NULL, category text NOT NULL, predictedHours Interger, "
+                             "deadline timestamp, start timestamp, end timestamp,partNum Integer, Tparts Interger, done Interger")
+        createTable("log",
+                    "actionDone text, time timestamp,task_id Interger, Foreign Key(task_id) references tasks (id)")
+        createTable("points", "Point Integer")
 
 
-def createTable(self, name, parameters):
-    self.getConnection()
+def createTable(name, parameters):
+    getConnection()
     cur.execute(str("create table if not exists " + name + "  (id integer PRIMARY KEY, " + parameters + " )"))
     conn.commit()
     conn.close()
 
 
-def printTable(self):
-    self.getConnection()
+def printTable():
+    getConnection()
     cur.execute("Select * from tasks")
     data = cur.fetchall()
     print("from tasks table:\n", data)
@@ -132,8 +134,8 @@ def printTable(self):
     conn.close()
 
 
-def getlog(self):
-    self.getConnection()
+def getlog():
+    getConnection()
     cur.execute("Select * from log")
     raw = cur.fetchall()
     data = []
@@ -146,8 +148,8 @@ def getlog(self):
     return data
 
 
-def getTasks(self):
-    self.getConnection()
+def getTasks():
+    getConnection()
     cur.execute("Select * from tasks")
     raw = cur.fetchall()
     data = []
@@ -160,13 +162,13 @@ def getTasks(self):
 
 
 if __name__ == '__main__':
-    test()
-    addTask("hello", "work", 2, datetime.datetime(2021, 5, 28, 7, 12), 1, 1)
-    addTask("hw", "work", 4, datetime.datetime(2021, 5, 29, 9, 13), 1, 1)
+    #test()
+    #addTask("hello", "work", 2, datetime.datetime(2021, 5, 28, 7, 12), 1, 1)
+    #addTask("hw", "work", 4, datetime.datetime(2021, 5, 29, 9, 13), 1, 1)
     printTable()
     print("\n")
 
-    getTasks()
-    updateTask(1, name="HOMEWORK")
-    printTable()
-    searchRecord(name="hello")
+    #getTasks()
+    #updateTask(1, name="HOMEWORK")
+    #printTable()
+    #searchRecord(name="hello")
