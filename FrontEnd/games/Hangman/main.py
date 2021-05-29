@@ -46,7 +46,7 @@ output_message = Label(input_frame)
 input_entry = Entry(input_frame)
 image_word_frame = Frame(body_frame,bg="white")
 
-hangman_image = Image.open("./pics/pic1.png")
+hangman_image = Image.open("pics/pic1.png")
 hangman_image = hangman_image.resize((364,412),Image.ANTIALIAS) # set to 68%, 100% = 536x607
 temp_img = ImageTk.PhotoImage(hangman_image)
 hangman_image_label = Label(image_word_frame,image=temp_img,borderwidth=0,highlightthickness=0,bg="white")
