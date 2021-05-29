@@ -11,8 +11,9 @@ from PIL import Image, ImageTk
 # initial tkinter setup
 root = Tk()
 root.title("Memes Galore")
+root.geometry("450x700")
 root.configure(background="white")
-root.state("zoomed")
+# root.state("zoomed")
 
 # access info for Reddit API
 creds = {
