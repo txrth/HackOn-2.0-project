@@ -6,7 +6,7 @@ class ToDoDatabase_I_O:
     def getConnection(self):
         global conn
         global cur
-        conn = sqlite3.connect("ToDoDataBase1.db")
+        conn = sqlite3.connect("ToDoDataBase.db")
         cur = conn.cursor()
 
     def addTask(self, name, category, predictedHours, deadline, partnum=1, Tpart=1,start=None, end=None,done= 0):
@@ -142,15 +142,17 @@ class ToDoDatabase_I_O:
         return data
 
     def __init__(self):
+        pass
+        """
         self.test()
         self.addTask("hello", "work", 2,datetime.datetime(2021,5,28,7,12),1,1)
         self.addTask("hw", "work", 4, datetime.datetime(2021, 5, 29, 9, 13), 1, 1)
         self.printTable()
         print("\n")
-        #self.getlog()
+
         self.getTasks()
         self.updateTask(1,name="HOMEWORK")
         self.printTable()
         self.searchRecord(name="hello")
-        #self.removeTask(1)
+"""
 
