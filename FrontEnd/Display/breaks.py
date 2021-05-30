@@ -1,12 +1,12 @@
+# imports
 import datetime
 import threading
 import time
 import pygame
 import FrontEnd.Display.credits as credits
-import FrontEnd.Display.breaks as breaks
+import FrontEnd.Display.work as work
 
-
-class Work:
+class Breaks:
     def __init__(self):
         print("hello")
         pygame.init()
@@ -18,8 +18,12 @@ class Work:
         stopwatch = False
         stopwatch_on = False
         paused = False
+        global breakTime
+        breakTime = 5 * 60
 
-        background = (0, 153, 143)
+
+
+        background = (240, 67, 67)
         display_surface = pygame.display.set_mode((X, Y))
         pygame.display.set_caption('Front-End')
 
@@ -36,7 +40,7 @@ class Work:
         app_name_rect3 = app_name3.get_rect()
         app_name_rect3.center = (X // 2, Y // 3 + Y // 3)
 
-        app_name4 = app_name_font.render('BREAK', True, (255, 255, 255))
+        app_name4 = app_name_font.render('WORK', True, (255, 255, 255))
         app_name_rect4 = app_name4.get_rect()
         app_name_rect4.center = (X // 2, Y // 3 + 350)
 
@@ -54,22 +58,25 @@ class Work:
         while True:
 
             def thread_f():
-                while (stopwatch == True):
-                    print(str(datetime.datetime.now() - current))
-                    display_surface.fill(background)
+                global breakTime
 
+                while (stopwatch == True):
+                    display_surface.fill(background)
                     display_surface.blit(app_name1, app_name_rect1)
                     display_surface.blit(app_name2, app_name_rect2)
                     display_surface.blit(app_name3, app_name_rect3)
                     display_surface.blit(app_name4, app_name_rect4)
+                    mins = ((breakTime)//60)
+                    sec = int((breakTime-mins*60)%60.0)
+                    timing = "{0:2.0f} : {1:2.0f}"
 
-                    timing = str(datetime.datetime.now() - current)
-                    timing = timing[0:timing.index(".")]
+                    timing=timing.format(mins,sec)
+                    print(timing)
                     point_text = point_font.render(str(timing), True, (255, 255, 255))
                     display_surface.blit(exit_button, (X - exit_button.get_width(), 0))
                     display_surface.blit(settings_button, (0, 0))
                     display_surface.blit(point_text, (X / 2 - point_text.get_width() / 2, Y / 4))
-
+                    breakTime-=1
                     pygame.display.update()
                     time.sleep(1)
 
@@ -80,6 +87,7 @@ class Work:
                 display_surface.blit(app_name2, app_name_rect2)
                 display_surface.blit(app_name3, app_name_rect3)
                 display_surface.blit(app_name4, app_name_rect4)
+
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -103,7 +111,7 @@ class Work:
                         stopwatch = True
                         stopwatch_on = True
                         if (not paused):
-                            current = datetime.datetime.now()
+                            breakTime = 5 * 60
                             paused = False
                         x = threading.Thread(target=thread_f)
 
@@ -118,7 +126,7 @@ class Work:
 
                     elif X // 2 - app_name3.get_width() / 2 <= mouse[0] <= X // 2 + app_name3.get_width() / 2 and \
                             Y // 3 + Y // 3 - app_name3.get_height() / 2 <= mouse[
-                            1] <= Y // 3 + Y // 3 + app_name3.get_height() / 2:
+                        1] <= Y // 3 + Y // 3 + app_name3.get_height() / 2:
                         print("continue")
                         stopwatch = False
                         paused = True
@@ -128,7 +136,7 @@ class Work:
                             Y // 3 + 350 - app_name4.get_height() / 2 <= mouse[
                             1] <= Y // 3 + 350 + app_name4.get_height() / 2:
                         print("settings")
-                        breaks.Breaks()
+                        work.Work()
 
             mouse = pygame.mouse.get_pos()
             if (not stopwatch_on):
