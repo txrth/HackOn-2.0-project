@@ -9,14 +9,12 @@ def getConnection():
     cur = conn.cursor()
 
 
-def addTask(name, category, predictedHours, deadline, partnum=1, Tpart=1, start=None, end=None, done=0):
+def addTask(name, predictedHours, deadline):
     getConnection()
-    cur.execute("insert into tasks values(null, ?,?,?, ?,?,?, ?,?,?)", (name, category, predictedHours, deadline, start,
-                                                                        end, partnum, Tpart, done))
+    cur.execute("insert into tasks values(null, ?,?,?)", (name, predictedHours, deadline))
     taskId = cur.lastrowid
     conn.commit()
-    cur.execute("insert into log values(null, ?, ?, ?)", (str("Event " + name + " part: " + str(partnum) + " of " +
-                                                              str(Tpart) + " has been added to task"),
+    cur.execute("insert into log values(null, ?, ?, ?)", (str("Event " + name  + " has been added to task"),
                                                           datetime.datetime.now(), taskId))
     conn.commit()
     conn.close()
@@ -99,20 +97,18 @@ def searchRecord(name="", category="", partnum="", Tpart="", done=""):
 def test():
     getConnection()
     try:
-        pass
-      #  cur.execute('drop table tasks')
-       # cur.execute('drop table log')
-       # cur.execute('drop table points')
+
+       cur.execute('drop table tasks')
+       cur.execute('drop table log')
+
     except:
         pass
     else:
         pass
     finally:
-        createTable("tasks", " name text NOT NULL, category text NOT NULL, predictedHours Interger, "
-                             "deadline timestamp, start timestamp, end timestamp,partNum Integer, Tparts Interger, done Interger")
+        createTable("tasks", " name text NOT NULL, predictedHours Interger, deadline timestamp")
         createTable("log",
                     "actionDone text, time timestamp,task_id Interger, Foreign Key(task_id) references tasks (id)")
-        createTable("points", "Point Integer")
 
 
 def createTable(name, parameters):
