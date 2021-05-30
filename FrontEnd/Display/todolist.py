@@ -6,10 +6,13 @@ from tkinter import messagebox
 import BackEnd.ToDoDatabase_I_O as db
 
 class ToDoList:
+
     def __init__(self):
         window = Tk()
         window.geometry("450x700")
-
+        global x,y
+        x=450
+        y=700
         pygame.display.set_caption('To Do List')
 
         def Allinputed():
@@ -38,11 +41,9 @@ class ToDoList:
 
         def adding():
             list.delete(0, END)
-            popUp()
             if Allinputed():
-                print(name.get(), Author.get(), Year.get(), ISBN.get())
-                db.addRec(name.get(), Author.get(), Year.get(), ISBN.get())
-                list.insert(END, (name.get(), Author.get(), Year.get(), ISBN.get()))
+                #print(name.get(), Author.get(), Year.get(), ISBN.get())
+
                 messagebox.showinfo("Task Add", "Task Added")
                 Reset()
 
@@ -72,89 +73,93 @@ class ToDoList:
             #for data in table:
              #   list.insert(END, data)
             #Reset()
+        def editing():
+            popUp()
 
         def popUp():
             panel = Tk()
             panel.geometry("450x700")
-            lbl = Label(panel, text="Task Changes", font=textFont)
-            lbl.place(x=75, y=75)
+            panel['background'] = '#00998f'
 
-            name = StringVar()
-            NameBox = Entry(panel, textvariable=name)
-            NameBox.place(x=250, y=75)
+            lbl = Label(panel, text="Name", font=textFont, fg="white", bg='#00998f')
+            lbl.place(x=100, y=75)
 
-            lbl = Label(panel, text="Category", font=textFont)
-            lbl.place(x=75, y=125)
 
-            Author = StringVar()
-            AuthorBox = Entry(panel, textvariable=Author)
-            AuthorBox.place(x=250, y=125)
+            NameBox = Entry(panel, textvariable=Name, fg="white", bg='#00998f')
+            NameBox.place(x=175, y=80)
 
-            lbl = Label(panel, text="Start Task", font=textFont)
-            lbl.place(x=150, y=175)
+            lbl = Label(panel, text="Deadline", font=textFont, fg="white", bg='#00998f')
+            lbl.place(x=150, y=125)
 
-            boxFont = ('Ink Free', 10, "bold")
+            boxFont = ('Ink Free', 15, "bold")
 
-            lbl = Label(panel, text="Start Year", font=boxFont)
-            lbl.place(x=50, y=240)
-            Year = IntVar()
-            YearBox = Entry(panel, textvariable=Year)
-            YearBox.place(x=50, y=225)
+            lbl = Label(panel, text="Year", font=boxFont, fg="white", bg='#00998f')
+            lbl.place(x=60, y=175)
 
-            lbl = Label(panel, text="Start Month", font=boxFont)
-            lbl.place(x=250, y=240)
-            Month = IntVar()
-            MonthBox = Entry(panel, textvariable=Month)
-            MonthBox.place(x=250, y=225)
 
-            lbl = Label(panel, text="Start Hours", font=boxFont)
-            lbl.place(x=50, y=290)
-            Hours = IntVar()
-            HoursBox = Entry(panel, textvariable=Hours)
-            HoursBox.place(x=50, y=275)
+            YearBox = Entry(panel, textvariable=Year, fg="white", bg='#00998f', width=4)
+            YearBox.place(x=65, y=155)
 
-            lbl = Label(panel, text="Start Mins", font=boxFont)
-            lbl.place(x=250, y=290)
-            Mins = IntVar()
-            MinsBox = Entry(panel, textvariable=Mins)
-            MinsBox.place(x=250, y=275)
+            lbl = Label(panel, text="Month", font=boxFont, fg="white", bg='#00998f')
+            lbl.place(x=110, y=175)
 
-            lbl = Label(panel, text="End Task", font=textFont)
-            lbl.place(x=160, y=325)
 
-            lbl = Label(panel, text="End Year", font=boxFont)
-            lbl.place(x=50, y=390)
-            StartYear = IntVar()
-            StartYearBox = Entry(panel, textvariable=StartYear)
-            StartYearBox.place(x=50, y=375)
+            MonthBox = Entry(panel, textvariable=Month, fg="white", bg='#00998f', width=2)
+            MonthBox.place(x=130, y=155)
 
-            lbl = Label(panel, text="End Month", font=boxFont)
-            lbl.place(x=250, y=390)
-            StartMonth = IntVar()
-            StartMonthBox = Entry(panel, textvariable=StartMonth)
-            StartMonthBox.place(x=250, y=375)
+            lbl = Label(panel, text="Day", font=boxFont, fg="white", bg='#00998f')
+            lbl.place(x=195, y=175)
 
-            lbl = Label(panel, text="End Hour", font=boxFont)
-            lbl.place(x=50, y=440)
-            StartHour = IntVar()
-            StartHourBox = Entry(panel, textvariable=StartHour)
-            StartHourBox.place(x=50, y=425)
 
-            lbl = Label(panel, text="End Mins", font=boxFont)
-            lbl.place(x=250, y=440)
-            StartMins = IntVar()
-            StartMinsBox = Entry(window, textvariable=StartMins)
-            StartMinsBox.place(x=250, y=425)
+            DayBox = Entry(panel, textvariable=Day, fg="white", bg='#00998f', width=2)
+            DayBox.place(x=195, y=155)
 
-            AddBtn = Button(window, text="Add", font=buttonFont, command=adding, fg="white", bg='#00998f')
-            AddBtn.place(y=550, x=17)
+            lbl = Label(panel, text="Hours", font=boxFont, fg="white", bg='#00998f')
+            lbl.place(x=260, y=175)
 
-            UpDateBtn = Button(window, text="Update", font=buttonFont, command=update, fg="white", bg='#00998f')
-            UpDateBtn.place(y=550, x=75)
 
-            DelBtn = Button(window, text="Delete", font=buttonFont, command=delete, fg="white", bg='#00998f')
-            DelBtn.place(y=550, x=169)
+            HoursBox = Entry(panel, textvariable=Hours, fg="white", bg='#00998f', width=2)
+            HoursBox.place(x=260, y=155)
 
+            lbl = Label(panel, text="Minutes", font=boxFont, fg="white", bg='#00998f')
+            lbl.place(x=325, y=175)
+
+
+            MinsBox = Entry(panel, textvariable=Mins, fg="white", bg='#00998f', width=2)
+            MinsBox.place(x=325, y=155)
+
+            lbl = Label(panel, text="Predicted Hours", font=textFont, fg="white", bg='#00998f')
+            lbl.place(x=50, y=225)
+
+
+            NameBox = Entry(panel, textvariable=PredHours, fg="white", bg='#00998f')
+            NameBox.place(x=250, y=230)
+
+            AddBtn = Button(panel, text="Add", font=buttonFont, command=adding, fg="white", bg='#00998f')
+            AddBtn.place(y=325, x=17)
+
+            UpDateBtn = Button(panel, text="Update", font=buttonFont, command=update, fg="white", bg='#00998f')
+            UpDateBtn.place(y=325, x=75)
+
+            DelBtn = Button(panel, text="Delete", font=buttonFont, command=delete, fg="white", bg='#00998f')
+            DelBtn.place(y=325, x=169)
+
+            list = Listbox(panel, width=60, height=15)
+            list.place(x=40, y=400)
+
+            sb1 = Scrollbar(panel)
+            sb1.place(x=410, y=450)
+
+            list.configure(yscrollcommand=sb1.set)
+            sb1.configure(command=list.yview)
+
+        Name = StringVar()
+        Year = IntVar()
+        Month = IntVar()
+        Day = IntVar()
+        Hours = IntVar()
+        Mins = IntVar()
+        PredHours = IntVar()
 
         #(0,153,143)
         window['background']='#00998f'
@@ -167,10 +172,13 @@ class ToDoList:
 
 
         SearBtn = Button(window, text="Search", font=buttonFont, command=search, fg="white",bg='#00998f')
-        SearBtn.place(y=550, x=255)
+        SearBtn.place(y=550, x=300)
 
         ViewBtn = Button(window, text="View All", font=buttonFont, command=veiwAll, fg="white",bg='#00998f')
-        ViewBtn.place(y=550, x=345)
+        ViewBtn.place(y=550, x=175)
+
+        EditBtn = Button(window, text="Edit Task", font=buttonFont, command=editing, fg="white", bg='#00998f')
+        EditBtn.place(y=550, x=50)
 
         list = Listbox(window, width=60,height=25)
         list.place(x=40, y=100)
