@@ -13,7 +13,7 @@ background = (0, 153, 143)
 display_surface = pygame.display.set_mode((X, Y))
 pygame.display.set_caption('SmartWorks')
 
-app_name_font = pygame.font.Font("FrontEnd/Display/junegull.ttf", 100)
+app_name_font = pygame.font.Font("./junegull.ttf", 100)
 app_name1 = app_name_font.render('SMART', True, (255, 255, 255))
 app_name_rect1 = app_name1.get_rect()
 app_name_rect1.center = (X // 2, Y // 5)
@@ -22,13 +22,13 @@ app_name2 = app_name_font.render('WORKS', True, (255, 255, 255))
 app_name_rect2 = app_name2.get_rect()
 app_name_rect2.center = (X // 2, Y // 5 + 75)
 
-button_font = pygame.font.Font("FrontEnd/Display/junegull.ttf", 40)
+button_font = pygame.font.Font("./junegull.ttf", 40)
 to_do_button_text = button_font.render('View My Tasks', True, (255, 255, 255))
 work_button_text = button_font.render('Start My Work Session', True, (255, 255, 255))
 points_button_text = button_font.render('View My Points', True, (255, 255, 255))
 
-exit_button = pygame.image.load("FrontEnd/Display/exit.png").convert()
-settings_button = pygame.image.load("FrontEnd/Display/settings.png").convert()
+exit_button = pygame.image.load("./exit.png").convert()
+settings_button = pygame.image.load("./settings.png").convert()
 
 # infinite loop
 while True:

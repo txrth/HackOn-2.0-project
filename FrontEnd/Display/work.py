@@ -4,6 +4,7 @@ import time
 import pygame
 import FrontEnd.Display.credits as credits
 import FrontEnd.Display.breaks as breaks
+import points
 
 
 class Work:
@@ -18,12 +19,13 @@ class Work:
         stopwatch = False
         stopwatch_on = False
         paused = False
+        self.counter = 0
 
         background = (0, 153, 143)
         display_surface = pygame.display.set_mode((X, Y))
         pygame.display.set_caption('Front-End')
 
-        app_name_font = pygame.font.Font('FrontEnd/Display/junegull.ttf', 50)
+        app_name_font = pygame.font.Font('./junegull.ttf', 50)
         app_name1 = app_name_font.render('START', True, (255, 255, 255))
         app_name_rect1 = app_name1.get_rect()
         app_name_rect1.center = (X // 4, Y // 2)
@@ -40,15 +42,15 @@ class Work:
         app_name_rect4 = app_name4.get_rect()
         app_name_rect4.center = (X // 2, Y // 3 + 350)
 
-        point_font = pygame.font.Font('FrontEnd/Display/junegull.ttf', 100)
+        point_font = pygame.font.Font('./junegull.ttf', 100)
         timing = str(datetime.datetime.now() - current)
         timing = timing[0:timing.index(".")]
         point_text = point_font.render(str(timing), True, (255, 255, 255))
         point_rect = point_text.get_rect()
         point_rect.center = (X // 2, Y // 5)
 
-        exit_button = pygame.image.load("FrontEnd/Display/exit.png").convert()
-        settings_button = pygame.image.load("FrontEnd/Display/settings.png").convert()
+        exit_button = pygame.image.load("./exit.png").convert()
+        settings_button = pygame.image.load("./settings.png").convert()
 
         # infinite loop
         while True:
@@ -70,6 +72,8 @@ class Work:
                     display_surface.blit(settings_button, (0, 0))
                     display_surface.blit(point_text, (X / 2 - point_text.get_width() / 2, Y / 4))
 
+                    self.counter += 1
+
                     pygame.display.update()
                     time.sleep(1)
 
@@ -86,8 +90,9 @@ class Work:
                     # deactivates the pygame library
                     pygame.quit()
 
-                    # quit the program.
+                    # quit the program
                     quit()
+
 
                 # checks if a mouse is clicked
                 if event.type == pygame.MOUSEBUTTONDOWN:
@@ -116,6 +121,13 @@ class Work:
                         stopwatch = False
                         paused = False
 
+                        current_points = 0
+                        with open("./point_counter.txt", "r") as point_file:
+                            current_points = int(point_file.readline().strip())
+
+                        with open("./point_counter.txt", "w") as point_file:
+                            point_file.write(str(current_points + self.counter))
+
                     elif X // 2 - app_name3.get_width() / 2 <= mouse[0] <= X // 2 + app_name3.get_width() / 2 and \
                             Y // 3 + Y // 3 - app_name3.get_height() / 2 <= mouse[
                             1] <= Y // 3 + Y // 3 + app_name3.get_height() / 2:
@@ -124,6 +136,7 @@ class Work:
                         paused = True
                         x = threading.Thread(target=thread_f)
                         x.start()
+
                     elif X // 2 - app_name4.get_width() / 2 <= mouse[0] <= X // 2 + app_name4.get_width() / 2 and \
                             Y // 3 + 350 - app_name4.get_height() / 2 <= mouse[
                             1] <= Y // 3 + 350 + app_name4.get_height() / 2:

@@ -27,7 +27,7 @@ class Breaks:
         display_surface = pygame.display.set_mode((X, Y))
         pygame.display.set_caption('Front-End')
 
-        app_name_font = pygame.font.Font('FrontEnd/Display/junegull.ttf', 50)
+        app_name_font = pygame.font.Font('./junegull.ttf', 50)
         app_name1 = app_name_font.render('START', True, (255, 255, 255))
         app_name_rect1 = app_name1.get_rect()
         app_name_rect1.center = (X // 4, Y // 2)
@@ -44,15 +44,15 @@ class Breaks:
         app_name_rect4 = app_name4.get_rect()
         app_name_rect4.center = (X // 2, Y // 3 + 350)
 
-        point_font = pygame.font.Font('FrontEnd/Display/junegull.ttf', 100)
+        point_font = pygame.font.Font('./junegull.ttf', 100)
         timing = str(datetime.datetime.now() - current)
         timing = timing[0:timing.index(".")]
         point_text = point_font.render(str(timing), True, (255, 255, 255))
         point_rect = point_text.get_rect()
         point_rect.center = (X // 2, Y // 5)
 
-        exit_button = pygame.image.load("FrontEnd/Display/exit.png").convert()
-        settings_button = pygame.image.load("FrontEnd/Display/settings.png").convert()
+        exit_button = pygame.image.load("./exit.png").convert()
+        settings_button = pygame.image.load("./settings.png").convert()
 
         # infinite loop
         while True:
