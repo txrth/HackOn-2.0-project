@@ -73,6 +73,89 @@ class ToDoList:
              #   list.insert(END, data)
             #Reset()
 
+        def popUp():
+            panel = Tk()
+            panel.geometry("450x700")
+            lbl = Label(panel, text="Task Changes", font=textFont)
+            lbl.place(x=75, y=75)
+
+            name = StringVar()
+            NameBox = Entry(panel, textvariable=name)
+            NameBox.place(x=250, y=75)
+
+            lbl = Label(panel, text="Category", font=textFont)
+            lbl.place(x=75, y=125)
+
+            Author = StringVar()
+            AuthorBox = Entry(panel, textvariable=Author)
+            AuthorBox.place(x=250, y=125)
+
+            lbl = Label(panel, text="Start Task", font=textFont)
+            lbl.place(x=150, y=175)
+
+            boxFont = ('Ink Free', 10, "bold")
+
+            lbl = Label(panel, text="Start Year", font=boxFont)
+            lbl.place(x=50, y=240)
+            Year = IntVar()
+            YearBox = Entry(panel, textvariable=Year)
+            YearBox.place(x=50, y=225)
+
+            lbl = Label(panel, text="Start Month", font=boxFont)
+            lbl.place(x=250, y=240)
+            Month = IntVar()
+            MonthBox = Entry(panel, textvariable=Month)
+            MonthBox.place(x=250, y=225)
+
+            lbl = Label(panel, text="Start Hours", font=boxFont)
+            lbl.place(x=50, y=290)
+            Hours = IntVar()
+            HoursBox = Entry(panel, textvariable=Hours)
+            HoursBox.place(x=50, y=275)
+
+            lbl = Label(panel, text="Start Mins", font=boxFont)
+            lbl.place(x=250, y=290)
+            Mins = IntVar()
+            MinsBox = Entry(panel, textvariable=Mins)
+            MinsBox.place(x=250, y=275)
+
+            lbl = Label(panel, text="End Task", font=textFont)
+            lbl.place(x=160, y=325)
+
+            lbl = Label(panel, text="End Year", font=boxFont)
+            lbl.place(x=50, y=390)
+            StartYear = IntVar()
+            StartYearBox = Entry(panel, textvariable=StartYear)
+            StartYearBox.place(x=50, y=375)
+
+            lbl = Label(panel, text="End Month", font=boxFont)
+            lbl.place(x=250, y=390)
+            StartMonth = IntVar()
+            StartMonthBox = Entry(panel, textvariable=StartMonth)
+            StartMonthBox.place(x=250, y=375)
+
+            lbl = Label(panel, text="End Hour", font=boxFont)
+            lbl.place(x=50, y=440)
+            StartHour = IntVar()
+            StartHourBox = Entry(panel, textvariable=StartHour)
+            StartHourBox.place(x=50, y=425)
+
+            lbl = Label(panel, text="End Mins", font=boxFont)
+            lbl.place(x=250, y=440)
+            StartMins = IntVar()
+            StartMinsBox = Entry(window, textvariable=StartMins)
+            StartMinsBox.place(x=250, y=425)
+
+            AddBtn = Button(window, text="Add", font=buttonFont, command=adding, fg="white", bg='#00998f')
+            AddBtn.place(y=550, x=17)
+
+            UpDateBtn = Button(window, text="Update", font=buttonFont, command=update, fg="white", bg='#00998f')
+            UpDateBtn.place(y=550, x=75)
+
+            DelBtn = Button(window, text="Delete", font=buttonFont, command=delete, fg="white", bg='#00998f')
+            DelBtn.place(y=550, x=169)
+
+
         #(0,153,143)
         window['background']='#00998f'
         title = Label(window, text="Tasks to Complete", font=('Ink Free', 40, "bold", "underline"), fg="white",bg='#00998f')
@@ -81,14 +164,7 @@ class ToDoList:
         textFont = ('Ink Free', 16, "bold")
         buttonFont = ('Ink Free', 16, "bold")
 
-        AddBtn = Button(window, text="Add", font=buttonFont, command=adding, fg="white",bg='#00998f')
-        AddBtn.place(y=550, x=17)
 
-        UpDateBtn = Button(window, text="Update", font=buttonFont, command=update, fg="white",bg='#00998f')
-        UpDateBtn.place(y=550, x=75)
-
-        DelBtn = Button(window, text="Delete", font=buttonFont, command=delete, fg="white",bg='#00998f')
-        DelBtn.place(y=550, x=169)
 
         SearBtn = Button(window, text="Search", font=buttonFont, command=search, fg="white",bg='#00998f')
         SearBtn.place(y=550, x=255)

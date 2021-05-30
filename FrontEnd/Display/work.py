@@ -128,7 +128,11 @@ class Work:
                             Y // 3 + 350 - app_name4.get_height() / 2 <= mouse[
                             1] <= Y // 3 + 350 + app_name4.get_height() / 2:
                         print("settings")
+                        if (not paused):
+                            paused = True
+                            stopwatch = False
                         breaks.Breaks()
+
 
             mouse = pygame.mouse.get_pos()
             if (not stopwatch_on):
